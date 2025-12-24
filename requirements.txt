@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+python-pptx
+sqlalchemy
+aiosqlite
+python-multipart
+jinja2
+scikit-learn
+joblib
+pytest
+pytest-cov
+python-dotenv

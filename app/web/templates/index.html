@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Presentation Validator</title>
+</head>
+<body>
+<h2>Upload presentation</h2>
+
+<input type="file" id="file">
+<button onclick="validate()">Check</button>
+
+<h3>Errors</h3>
+<pre id="errors"></pre>
+
+<h3>History</h3>
+<pre id="history"></pre>
+
+<script>
+function validate() {
+    const file = document.getElementById("file").files[0];
+    const data = new FormData();
+    data.append("file", file);
+
+    fetch("/validate", { method: "POST", body: data })
+        .then(r => r.json())
+        .then(d => document.getElementById("errors").textContent = JSON.stringify(d, null, 2));
+}
+
+fetch("/validations")
+    .then(r => r.json())
+    .then(d => document.getElementById("history").textContent = JSON.stringify(d, null, 2));
+</script>
+</body>
+</html>
